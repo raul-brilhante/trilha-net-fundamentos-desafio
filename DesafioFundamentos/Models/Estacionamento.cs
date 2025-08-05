@@ -26,7 +26,7 @@ namespace DesafioFundamentos.Models
                 verificacao = Console.ReadLine();
 
                 // Utilizando regex com o formato de placa que é válido.
-                Regex regex = new Regex(@"([A-Z]{3}[-]?[0-9]{4})");
+                Regex regex = new Regex(@"^[A-Z]{3}-[0-9]{4}$");
 
                 if (regex.Match(verificacao).Success)
                     ok = true;
@@ -68,16 +68,16 @@ namespace DesafioFundamentos.Models
 
                 decimal valorTotal = precoInicial + precoPorHora * horas;
 
-                veiculos.Remove(placa);
+                veiculos.Remove(placa.ToUpper());
 
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                Console.WriteLine($"O veículo {placa.ToUpper()} foi removido e o preço total foi de: R$ {valorTotal}");
             }
             else
                 Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
         }
 
         /// <summary>
-        /// Lista os veículos que estão etacionados no momento.
+        /// Lista os veículos que estão estacionados no momento.
         /// </summary>
         public void ListarVeiculos()
         {
