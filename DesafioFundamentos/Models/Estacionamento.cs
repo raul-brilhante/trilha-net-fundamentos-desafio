@@ -46,13 +46,13 @@ namespace DesafioFundamentos.Models
                 {
                     Console.Write("Digite a quantidade de horas que o veículo permaneceu estacionado: ");
                     string input = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(input))
+                    if (!string.IsNullOrEmpty(input) && int.TryParse(input, out int hora))
                         horas = Convert.ToInt32(input);
 
                     if (horas < 1)
-                    {
-                        Console.WriteLine("Digite uma quantidade de horas válida.\n");
-                    }
+                            {
+                                Console.WriteLine("Digite uma quantidade de horas válida.\n");
+                            }
                 } while (horas < 1);
 
                 decimal valorTotal = precoInicial + precoPorHora * horas;
