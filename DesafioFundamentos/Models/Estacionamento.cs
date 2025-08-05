@@ -13,6 +13,9 @@ namespace DesafioFundamentos.Models
             this.precoPorHora = precoPorHora;
         }
 
+        /// <summary>
+        /// Adiciona o veículo, informando a placa no formato ABC-1234.
+        /// </summary>
         public void AdicionarVeiculo()
         {
             bool ok = false;
@@ -39,6 +42,10 @@ namespace DesafioFundamentos.Models
                 Console.WriteLine("Esse carro já está cadastrado como estacionado.");
         }
 
+        /// <summary>
+        /// Remove um veiculo estacionado, informado pela placa.
+        /// Informa o preço a se pagar dependendo das horas informadas.
+        /// </summary>
         public void RemoverVeiculo()
         {
             Console.Write("Digite a placa do veículo para remover: ");
@@ -56,9 +63,7 @@ namespace DesafioFundamentos.Models
                         horas = Convert.ToInt32(input);
 
                     if (horas < 1)
-                    {
                         Console.WriteLine("Digite uma quantidade de horas válida.\n");
-                    }
                 } while (horas < 1);
 
                 decimal valorTotal = precoInicial + precoPorHora * horas;
@@ -68,11 +73,12 @@ namespace DesafioFundamentos.Models
                 Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
             }
             else
-            {
                 Console.WriteLine("Desculpe, esse veículo não está estacionado aqui. Confira se digitou a placa corretamente");
-            }
         }
 
+        /// <summary>
+        /// Lista os veículos que estão etacionados no momento.
+        /// </summary>
         public void ListarVeiculos()
         {
             // Verifica se há veículos no estacionamento
@@ -80,14 +86,10 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Os veículos estacionados são:");
                 foreach (string veiculosEstacionados in veiculos)
-                {
                     Console.WriteLine(veiculosEstacionados);
-                }
             }
             else
-            {
                 Console.WriteLine("Não há veículos estacionados.");
-            }
         }
     }
 }
