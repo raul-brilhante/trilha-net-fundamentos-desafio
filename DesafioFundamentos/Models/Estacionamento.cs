@@ -26,8 +26,8 @@ namespace DesafioFundamentos.Models
             } while (verificacao.Length != 8);  // Verifica se a placa tem 8 digitos
                                                 // Apenas o mínimo de garantia
                                                 
-            if (!veiculos.Contains(verificacao))
-                veiculos.Add(verificacao);
+            if (!veiculos.Contains(verificacao.ToUpper()))
+                veiculos.Add(verificacao.ToUpper());
 
             else
                 Console.WriteLine("Esse carro já está cadastrado como estacionado.");
