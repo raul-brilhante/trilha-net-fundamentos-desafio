@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 namespace DesafioFundamentos.Models
 {
     public class Estacionamento
@@ -14,18 +15,23 @@ namespace DesafioFundamentos.Models
 
         public void AdicionarVeiculo()
         {
+            bool ok = false;
             string verificacao;
             do
             {
                 Console.Write("Digite a placa do veículo para estacionar: ");
                 verificacao = Console.ReadLine();
 
-                if (verificacao.Length != 8)
-                    Console.WriteLine("Digite uma placa válida. Formato de exemplo: ABC-1234\n");
+                // Utilizando regex com o formato de placa que é válido.
+                Regex regex = new Regex(@"([A-Z]{3}[-]?[0-9]{4})");
 
-            } while (verificacao.Length != 8);  // Verifica se a placa tem 8 digitos
-                                                // Apenas o mínimo de garantia
-                                                
+                if (regex.Match(verificacao).Success)
+                    ok = true;
+                else
+                    Console.WriteLine("Digite uma placa válida.\n");
+
+            } while (!ok);
+
             if (!veiculos.Contains(verificacao.ToUpper()))
                 veiculos.Add(verificacao.ToUpper());
 
@@ -50,9 +56,9 @@ namespace DesafioFundamentos.Models
                         horas = Convert.ToInt32(input);
 
                     if (horas < 1)
-                            {
-                                Console.WriteLine("Digite uma quantidade de horas válida.\n");
-                            }
+                    {
+                        Console.WriteLine("Digite uma quantidade de horas válida.\n");
+                    }
                 } while (horas < 1);
 
                 decimal valorTotal = precoInicial + precoPorHora * horas;
